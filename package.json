@@ -9,8 +9,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "engines": {
+  "temp":{
+    "engines": {
     "node": "^14"
+    }
   },
   "dependencies": {
     "chrome-aws-lambda": "^6",
