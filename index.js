@@ -30,7 +30,7 @@ app.get("/api/getmovie", (req, res) => {
       console.log(id);
 
       // Configures puppeteer
-      const browser = await puppeteer.launch({ headless: false });
+      const browser = await puppeteer.launch({ headless: true });
       const page = await browser.newPage();
       // console.log("page", page);
       // await page.setUserAgent(
