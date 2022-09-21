@@ -25,8 +25,8 @@ app.get("/api/getmovie", (req, res) => {
   //   }
   (async () => {
     try {
-      // let id = req.query.tmdb;
-      let id = "";
+      let id = req.query.tmdb;
+      //   let id = "tt6806448";
       console.log(id);
 
       // Configures puppeteer
@@ -36,13 +36,10 @@ app.get("/api/getmovie", (req, res) => {
       // await page.setUserAgent(
       //   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
       // );
-      await page.goto(
-        `https://www.2embed.to/embed/imdb/movie?id=tt6806448${id}`,
-        {
-          timeout: 60000,
-          waitUntil: "load",
-        }
-      );
+      await page.goto(`https://www.2embed.to/embed/imdb/movie?id=${id}`, {
+        timeout: 60000,
+        waitUntil: "load",
+      });
       // await page.goto(
       //   `https://www.2embed.to/embed/tmdb/movie?id=tt6806448${id}`,
       //   {
