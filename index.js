@@ -3,32 +3,33 @@ const app = require("express")();
 let chrome = {};
 let puppeteer;
 
-if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
-  chrome = require("chrome-aws-lambda");
-  puppeteer = require("puppeteer-core");
-} else {
-  puppeteer = require("puppeteer");
-}
+puppeteer = require("puppeteer");
+// if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+//   chrome = require("chrome-aws-lambda");
+//   puppeteer = require("puppeteer-core");
+// } else {
+//   puppeteer = require("puppeteer");
+// }
 
 app.get("/api/getmovie", async (req, res) => {
   let options = {};
 
-  if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
-    options = {
-      args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
-      defaultViewport: chrome.defaultViewport,
-      executablePath: await chrome.executablePath,
-      headless: true,
-      ignoreHTTPSErrors: true,
-    };
-  }
+  //   if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+  //     options = {
+  //       args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
+  //       defaultViewport: chrome.defaultViewport,
+  //       executablePath: await chrome.executablePath,
+  //       headless: true,
+  //       ignoreHTTPSErrors: true,
+  //     };
+  //   }
 
   try {
     let id = req.query.tmdb;
     console.log(id);
 
     // Configures puppeteer
-    const browser = await puppeteer.launch(options);
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     console.log("page", page);
     // await page.setUserAgent(
@@ -74,22 +75,22 @@ app.get("/api/getmovie", async (req, res) => {
 app.get("/api/test", async (req, res) => {
   let options = {};
 
-  if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
-    options = {
-      args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
-      defaultViewport: chrome.defaultViewport,
-      executablePath: await chrome.executablePath,
-      headless: true,
-      ignoreHTTPSErrors: true,
-    };
-  }
+  //   if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+  //     options = {
+  //       args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
+  //       defaultViewport: chrome.defaultViewport,
+  //       executablePath: await chrome.executablePath,
+  //       headless: true,
+  //       ignoreHTTPSErrors: true,
+  //     };
+  //   }
 
   try {
     let id = req.query.tmdb;
     console.log(id);
 
     // Configures puppeteer
-    const browser = await puppeteer.launch(options);
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     // console.log("page", page);
     // await page.setUserAgent(
